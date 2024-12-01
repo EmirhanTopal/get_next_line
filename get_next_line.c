@@ -6,13 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:16:39 by emtopal           #+#    #+#             */
-/*   Updated: 2024/12/02 00:43:48 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/02 01:17:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-
 
 char	*ft_strdup(const char *s1)
 {
@@ -103,7 +101,7 @@ char *get_next_line(int fd)
 	static char *last_pointer = NULL;
 	char *new_line;
 	
-	if (fd < 0 || BUFFER_SIZE < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	last_pointer = read_file(fd, last_pointer);
 	if (last_pointer == NULL || last_pointer[0] == '\0')
@@ -121,8 +119,14 @@ char *get_next_line(int fd)
 	return (new_line);
 }
 #include <fcntl.h>
-int main()
-{
-	int fd = open("emirhan.txt", O_RDONLY);
-	get_next_line(fd);
+#include <stdio.h>
+int main() {
+    int fd = open("emirhan.txt", O_RDONLY);
+    char *line;
+
+    while ((line = get_next_line(fd)) != NULL) {
+        free(line); // Free the line after using it
+    }
+    close(fd);
+    return 0;
 }
