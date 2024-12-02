@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:19:08 by emtopal           #+#    #+#             */
-/*   Updated: 2024/12/01 22:19:42 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/02 04:01:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 char	*ft_strndup(const char *s, size_t n)
 {
-	char			*str;
-	unsigned int	i;
+	char	*str;
+	size_t	i;
 
 	i = 0;
 	str = malloc(sizeof(char) * (n + 1));
 	if (str == NULL)
 		return (NULL);
-	while (i < n)
+	while (i < n && s[i])
 	{
 		str[i] = s[i];
 		i++;
