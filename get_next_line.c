@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:16:39 by emtopal           #+#    #+#             */
-/*   Updated: 2024/12/02 04:09:06 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/02 04:55:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static char *read_file(int fd, char *adrs)
 		return (NULL);
 	if (adrs == NULL)
 		adrs = ft_strdup("");
-	while (!ft_strchr(adrs, '\n') && adrs)
+	while (!ft_strchr(adrs, '\n'))
 	{
 		bytes_count = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_count < 0)
