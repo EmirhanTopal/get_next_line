@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:16:39 by emtopal           #+#    #+#             */
-/*   Updated: 2024/12/02 04:55:15 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/02 05:15:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char *read_file(int fd, char *adrs)
 	int bytes_count;
 
 	buffer = (char *) malloc((BUFFER_SIZE + 1));
-	bytes_count = 1;
+	bytes_count = 0;
 	if (buffer == NULL)
 		return (NULL);
 	if (adrs == NULL)
@@ -111,11 +111,6 @@ char *get_next_line(int fd)
 		return (NULL);
 	}
 	new_line = reminder_value(&last_pointer);
-	if (!new_line)
-	{
-		free(last_pointer);
-		last_pointer = NULL;
-	}
 	return (new_line);
 }
 // #include <fcntl.h>
