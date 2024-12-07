@@ -6,11 +6,19 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:16:39 by emtopal           #+#    #+#             */
-/*   Updated: 2024/12/02 18:38:04 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/07 12:22:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static void *only_free(char **buffer, char **adrs)
+{
+	free(*buffer);
+	free(*adrs);
+	*adrs = NULL;
+	return (NULL);
+}
 
 char	*ft_strdup(const char *s1)
 {
@@ -55,7 +63,6 @@ static char *reminder_value(char **str)
 	}
 	line = ft_strndup(*str, len);
 	temp = ft_strdup(*str + len);
-	//temp = ft_substr(*str, len, ft_strlen(*str) - len);
 	free(*str);
 	*str = temp;
 	return (line);
@@ -77,12 +84,7 @@ static char *read_file(int fd, char *adrs)
 	{
 		bytes_count = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_count < 0)
-		{
-			free(buffer);
-			free(adrs);
-			adrs = NULL;
-			return (NULL);
-		}
+			return(only_free(&buffer, &adrs));
 		buffer[bytes_count] = '\0';
 		if (bytes_count == 0)
             break;
